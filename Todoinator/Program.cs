@@ -1,46 +1,45 @@
-﻿using System.Runtime.ConstrainedExecution;
-using System.Runtime.InteropServices;
+﻿﻿Console.WriteLine("Willkommen beim Todoinator!");
+// var meineCooleListe = new List<string>();
 var todoList = new List<TodoItem>();
-Console.WriteLine(value:"Willkommen beim Todoinator!");
-while (true)   
+while (true)
 {
-    foreach(var item in todoList)
+    for (int i = 0; i < todoList.Count; i++)
     {
-        Console.WriteLine(item);
+        Console.WriteLine($"Index {i + 1}: {todoList[i]}");
     }
-    Console.WriteLine(value:"""
-    1.Neues Todo
-    2.Todo abhaken
+    Console.WriteLine("""
+    1. Neues Todo
+    2. Todo abhaken
     """);
-    var userMenuChoice= Console.ReadLine();
+    var userMenuChoice = Console.ReadLine();
     switch (userMenuChoice)
     {
         case "1":
-            //Todo erstelllen
+            // Todo erstellen
             Console.WriteLine("Was ist das Todo?");
             var todoDescription = Console.ReadLine();
             Console.WriteLine("""
-            Wie wichtig? 
-            1 => Hohe Prio
-            2 => Normale Prio
-            3 => Niedrige Prio
-            """);
+             Wie wichtig?
+             1 => Hohe Prio
+             2 => Normale Prio
+             3 => Niedrige Prio
+             """);
             var todoPrio = Console.ReadLine();
             var newTodo = new TodoItem();
-            newTodo.Description= todoDescription;
-            newTodo.Prio = Convert.ToInt32 (todoPrio);
+            newTodo.Description = todoDescription;
+            newTodo.Prio = Convert.ToInt32(todoPrio);
             todoList.Add(newTodo);
             break;
         case "2":
-            //Todo abhaken
-            System.Console.WriteLine("WElches Todo möchteset du löschen?");
+            // Todo abhaken
+            Console.WriteLine("Welches Todo möchtest do löschen?");
             var indexToDelete = Convert.ToInt32(Console.ReadLine());
-            todoList.RemoveAt(indexToDelete);
+            todoList.RemoveAt(indexToDelete - 1);
             break;
         default:
-            //Nicht definierter Input eg. "hamester"
+            // Nicht definierter Input eg. "hamster"
             break;
-
     }
+
     Console.Clear();
 }
