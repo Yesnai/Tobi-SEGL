@@ -2,20 +2,29 @@ using BenchmarkDotNet.Attributes;
 
 public class Algorithms
 {
-    // Binary Search => O(log(n))
-     
-    [Benchmark]
-    public void TestLinearSearch()
+    int [] cards; // Deklaration
+    public Algorithms()
+    
     {
-        int[] cards = new int[50000000];
+        cards = new int[50000000];               //Initialiesierung 
         for (int i = 0; i < cards.Length; i++)
         {
             cards[i] = i + 1;
         }
+    }
+    // Binary Search => O(log(n))
+     
+    [Benchmark]
+    public void TestBinarySearch()
+    {
         FindCardLocationBinarySearch(cards, 49_942_069); // 49_942_068
     }
- 
-public static int FindCardLocationBinarySearch(int[] cards, int query)
+    [Benchmark]
+    public void TestLinearSearch()
+    {
+        FindCardLocationLinearSearch(cards, 49_942_069); // 49_942_068
+    }
+    public static int FindCardLocationBinarySearch(int[] cards, int query)
 {
     int min = 0;
     int max = cards.Length - 1;
@@ -42,7 +51,7 @@ public static int FindCardLocationBinarySearch(int[] cards, int query)
 
 // Linear Search => O(n)
 
-public int FindCardLocation(int[] cards, int query)
+public int FindCardLocationLinearSearch(int[] cards, int query)
 {
     /*
     Definiere Variable "index" und initialisiere mit Wert 0
